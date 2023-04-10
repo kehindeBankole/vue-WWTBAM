@@ -20,6 +20,28 @@ export const questions = [
       },
     ],
   },
+  {
+    text: 'Which of the following is a Nigerian artiste',
+    options: [
+      {
+        isCorrect:false,
+        text: 'lil wayne',
+      },
+      {
+        isCorrect: false,
+        text: 'variable_name',
+      },
+      {
+        isCorrect: true,
+        text: 'jesse jags',
+      },
+      {
+        isCorrect:false,
+        text: 'cave men',
+      },
+    ],
+  },
+  
 ];
 
 export const scores = [
