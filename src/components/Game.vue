@@ -3,17 +3,26 @@ import { ref } from 'vue';
 import Score from './Score.vue';
 import Options from './Options.vue';
 import { questions } from 'data';
+import { scores } from 'data';
 const count = ref(0);
 function log(item: string) {
-  alert(item);
+
+  setTimeout(() => {
+    if (count.value === questions?.length - 1) {
+      alert(`congratulations you won ${scores[count.value]}`)
+    } else {
+      count.value += 1
+    }
+  }, 2000)
 }
 </script>
 
 <template>
   <div class="grid grid-cols-12 h-screen">
     <div class="bg-red-500 col-span-10 grid grid-rows-[6fr_6fr]">
-      <div class="bg-white">white</div>
+      <div class="bg-white"> {{ count }}</div>
       <div class="bg-yellow-500">
+
         <div class="mt-[-3rem]">
           <div class="trapezoid text-white relative grid place-items-center">
             <p class="translate-y-10 z-[99] text-xl">
@@ -33,7 +42,7 @@ function log(item: string) {
           <h1 class="text-white">LIFELINES</h1>
         </div>
         <div class="px-6">
-          <Score />
+          <Score :current-position="count" />
         </div>
       </div>
     </div>
@@ -48,6 +57,7 @@ function log(item: string) {
   height: 0;
   width: 100%;
 }
+
 .inverted-trapezoid {
   border-bottom: 50px solid black;
   border-left: 25px solid transparent;

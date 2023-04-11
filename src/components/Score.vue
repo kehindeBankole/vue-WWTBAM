@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { scores } from 'data';
+var props = defineProps<{
+  currentPosition: number
+}>();
 </script>
 
 <template>
-  <div class="space-y-10 flex flex-col items-start">
-    <div v-for="item in scores" class="font-semibold text-white text-lg">
+  <div class="flex-col-reverse flex gap-6 items-start">
+    <div v-for="(item, index ) in scores" class="font-semibold text-white text-lg w-full rounded-md p-2"
+      :class="{ 'bg-red-500': index === props.currentPosition - 1 }">
       {{ item }}
     </div>
   </div>
