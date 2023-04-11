@@ -67,7 +67,7 @@ function selectedWrong(index: number) {
 @keyframes bg-winner {
 
   0% {
-    border-bottom: 50px solid yellow
+    border-bottom: 50px solid orange
   }
 
   25% {
@@ -75,7 +75,7 @@ function selectedWrong(index: number) {
   }
 
   50% {
-    border-bottom: 50px solid yellow
+    border-bottom: 50px solid orange
   }
 
   75% {
@@ -91,7 +91,7 @@ function selectedWrong(index: number) {
 @keyframes bg-loser {
 
   0% {
-    border-bottom: 50px solid yellow
+    border-bottom: 50px solid orange
   }
 
   25% {
@@ -99,7 +99,7 @@ function selectedWrong(index: number) {
   }
 
   50% {
-    border-bottom: 50px solid yellow
+    border-bottom: 50px solid orange
   }
 
   75% {

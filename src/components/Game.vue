@@ -6,7 +6,6 @@ import { questions } from 'data';
 import { scores } from 'data';
 const count = ref(0);
 function log(item: string) {
-
   setTimeout(() => {
     if (count.value === questions?.length - 1) {
       alert(`congratulations you won ${scores[count.value]}`)
@@ -21,7 +20,7 @@ function log(item: string) {
   <div class="grid grid-cols-12 h-screen">
     <div class="bg-red-500 col-span-10 grid grid-rows-[6fr_6fr]">
       <div class="bg-white"> {{ count }}</div>
-      <div class="bg-yellow-500">
+      <div class="bg-blue-900">
 
         <div class="mt-[-3rem]">
           <div class="trapezoid text-white relative grid place-items-center">

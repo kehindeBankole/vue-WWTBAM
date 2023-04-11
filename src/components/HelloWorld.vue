@@ -4,7 +4,6 @@ import { ref } from 'vue'
 defineProps<{ msg: string }>()
 
 const count = ref(0)
-const sd = 'dj'
 function test(){
   count.value++
   console.log(count.value)
