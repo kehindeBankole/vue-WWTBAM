@@ -2,26 +2,33 @@
 import { ref } from 'vue';
 import Score from './Score.vue';
 import Options from './Options.vue';
+import WrongAnswer from './WrongAnswer.vue';
 import { questions } from 'data';
 import { scores } from 'data';
 const count = ref(0);
+const isFailed = ref(false);
+function selectWrongAnswer() {
+  isFailed.value = true;
+}
+
 function log(item: string) {
   setTimeout(() => {
     if (count.value === questions?.length - 1) {
-      alert(`congratulations you won ${scores[count.value]}`)
+      alert(`congratulations you won ${scores[count.value]}`);
     } else {
-      count.value += 1
+      count.value += 1;
     }
-  }, 2000)
+  }, 5000);
 }
 </script>
 
 <template>
-  <div class="grid grid-cols-12 h-screen">
+  <div v-if="!isFailed" class="grid grid-cols-12 h-screen">
     <div class="bg-red-500 col-span-10 grid grid-rows-[6fr_6fr]">
-      <div class="bg-white"> {{ count }}</div>
+      <div class="bg-white grid place-items-center">
+        <p v-if="count - 1 === 0">{{ scores[count - 1] }}</p>
+      </div>
       <div class="bg-blue-900">
-
         <div class="mt-[-3rem]">
           <div class="trapezoid text-white relative grid place-items-center">
             <p class="translate-y-10 z-[99] text-xl">
@@ -31,7 +38,11 @@ function log(item: string) {
           <div class="inverted-trapezoid"></div>
         </div>
         <div class="mt-10">
-          <Options :questions="questions[count]" :log="(e) => log(e)" />
+          <Options
+            :questions="questions[count]"
+            :log="(e) => log(e)"
+            :select-wrong-answer="selectWrongAnswer"
+          />
         </div>
       </div>
     </div>
@@ -45,6 +56,9 @@ function log(item: string) {
         </div>
       </div>
     </div>
+  </div>
+  <div v-if="isFailed">
+    <WrongAnswer :info="count>0 ? `you won only ${scores[count-1]} ` : 'you did not win any money, go home'"/>
   </div>
 </template>
 
