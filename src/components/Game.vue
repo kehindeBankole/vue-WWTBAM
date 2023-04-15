@@ -10,15 +10,12 @@ const isFailed = ref(false);
 function selectWrongAnswer() {
   isFailed.value = true;
 }
-
-function log(item: string) {
-  setTimeout(() => {
-    if (count.value === questions?.length - 1) {
+function next(){
+  if (count.value === questions?.length - 1) {
       alert(`congratulations you won ${scores[count.value]}`);
     } else {
       count.value += 1;
     }
-  }, 5000);
 }
 </script>
 
@@ -26,7 +23,7 @@ function log(item: string) {
   <div v-if="!isFailed" class="grid grid-cols-12 h-screen">
     <div class="bg-red-500 col-span-10 grid grid-rows-[6fr_6fr]">
       <div class="bg-white grid place-items-center">
-        <p v-if="count - 1 === 0">{{ scores[count - 1] }}</p>
+        <p v-if="count - 1 >= 0">{{ scores[count - 1] }}</p>
       </div>
       <div class="bg-blue-900">
         <div class="mt-[-3rem]">
@@ -40,8 +37,8 @@ function log(item: string) {
         <div class="mt-10">
           <Options
             :questions="questions[count]"
-            :log="(e) => log(e)"
             :select-wrong-answer="selectWrongAnswer"
+            :next="next"
           />
         </div>
       </div>

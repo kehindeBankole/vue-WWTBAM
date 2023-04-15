@@ -6,34 +6,31 @@ import rightSound from 'assets/Right_Sound.mp3';
 import wrongSound from 'assets/Wrong_Answer.mp3';
 var props = defineProps<{
   questions: Question;
-  log: (item: string) => void;
-  selectWrongAnswer:()=>void
+  selectWrongAnswer: () => void;
+  next: () => void;
 }>();
 
-const picture = ref();
-const picture2 = ref();
+const trapezium = ref();
+const trapezium2 = ref();
 
-function playSound(sound:string) {
-  var audio = new Audio(sound); // path to file
+function playSound(sound: string, next?: () => void) {
+  var audio = new Audio(sound);
   audio.play();
+  audio.addEventListener('ended', () => next?.());
+  return audio;
 }
 function selectedCorrect(index: number) {
-  setTimeout(() => playSound(rightSound), 5000);
-  picture.value[index].classList.add('winner');
-  picture2.value[index].classList.add('winner');
+  trapezium.value[index].classList.add('winner');
+  trapezium2.value[index].classList.add('winner');
 }
 function removeClass(index: number) {
-  setTimeout(() => {
-    picture.value[index].classList.remove('winner');
-    picture2.value[index].classList.remove('winner');
-  }, 5500);
+  trapezium.value[index].classList.remove('winner');
+  trapezium2.value[index].classList.remove('winner');
 }
-function selectedWrong(index: number) {
-  setTimeout(() => playSound(wrongSound), 5000);
-  picture.value[index].classList.add('loser');
-  picture2.value[index].classList.add('loser');
-  setTimeout(() =>  props.selectWrongAnswer(), 9000);
 
+function selectedWrong(index: number) {
+  trapezium.value[index].classList.add('loser');
+  trapezium2.value[index].classList.add('loser');
 }
 </script>
 
@@ -44,11 +41,20 @@ function selectedWrong(index: number) {
         class="inset-0 absolute w-full z-[99]"
         @click="
           () => {
-            playSound(audioSound);
+            playSound(audioSound).addEventListener('ended', () => {
+              if (items.isCorrect) {
+                playSound(rightSound, props.next).addEventListener(
+                  'ended',
+                  () => removeClass(index)
+                );
+              } else {
+                playSound(wrongSound).addEventListener('ended', () =>
+                  props.selectWrongAnswer()
+                );
+              }
+            });
             if (items.isCorrect) {
               selectedCorrect(index);
-              removeClass(index);
-              props.log(items.text);
             } else {
               selectedWrong(index);
             }
@@ -57,11 +63,11 @@ function selectedWrong(index: number) {
       ></button>
       <div
         class="trapezoid text-white relative grid place-items-center"
-        ref="picture"
+        ref="trapezium"
       >
         <p class="translate-y-10 z-50 capitalize text-lg">{{ items.text }}</p>
       </div>
-      <div class="inverted-trapezoid" ref="picture2"></div>
+      <div class="inverted-trapezoid" ref="trapezium2"></div>
     </div>
   </div>
 </template>

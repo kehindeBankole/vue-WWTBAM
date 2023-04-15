@@ -83,6 +83,132 @@ export const questions = [
       },
     ],
   },
+  {
+    text: 'Which of the following is not a batman actor',
+    options: [
+      {
+        isCorrect: false,
+        text: 'christian bale',
+      },
+      {
+        isCorrect: false,
+        text: 'micheal keaton',
+      },
+      {
+        isCorrect: true,
+        text: 'Matthew McConaughey',
+      },
+      {
+        isCorrect: false,
+        text: 'kevin conroy',
+      },
+    ],
+  },
+  {
+    text: 'Which of these characters died in NARUTO ',
+    options: [
+      {
+        isCorrect: false,
+        text: 'kakashi',
+      },
+      {
+        isCorrect: true,
+        text: 'Neji',
+      },
+      {
+        isCorrect: false,
+        text: 'Sasuke',
+      },
+      {
+        isCorrect: false,
+        text: 'Guy',
+      },
+    ],
+  },
+  {
+    text: 'One of the following is not a programming language',
+    options: [
+      {
+        isCorrect: true,
+        text: 'reactJS',
+      },
+      {
+        isCorrect: false,
+        text: 'C#',
+      },
+      {
+        isCorrect: false,
+        text: 'C++',
+      },
+      {
+        isCorrect: false,
+        text: 'Java',
+      },
+    ],
+  },
+  {
+    text: 'One of the following is not a continent',
+    options: [
+      {
+        isCorrect: false,
+        text: 'South America',
+      },
+      {
+        isCorrect: false,
+        text: 'Europe',
+      },
+      {
+        isCorrect: false,
+        text: 'Asia',
+      },
+      {
+        isCorrect: true,
+        text: 'South Africa',
+      },
+    ],
+  },
+  {
+    text: 'One of the following is not a programming language',
+    options: [
+      {
+        isCorrect: true,
+        text: 'reactJS',
+      },
+      {
+        isCorrect: false,
+        text: 'C#',
+      },
+      {
+        isCorrect: false,
+        text: 'C++',
+      },
+      {
+        isCorrect: false,
+        text: 'Java',
+      },
+    ],
+  },
+  {
+    text: 'One of the following is a tribe in Nigeria',
+    options: [
+      {
+        isCorrect: false,
+        text: 'Khoekhoe',
+      },
+      {
+        isCorrect: false,
+        text: 'Zulu',
+      },
+      {
+        isCorrect: true,
+        text: 'Tiv',
+      },
+      {
+        isCorrect: false,
+        text: 'Swazi',
+      },
+    ],
+  },
 ];
 
 export const scores = [
