@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "run-p dev:*",
     "dev:server": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vue-tsc && npx tailwindcss -i ./src/styles/index.css -o ./src/index.css && vite build",
     "preview": "vite preview",
     "dev:tailwind": "npx tailwindcss -i ./src/style/index.css -o ./src/style.css --watch"
   },
