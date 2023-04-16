@@ -110,7 +110,7 @@ function useLifeLine(type: '50/50' | 'AUD') {
       </div>
     </div>
     <div v-if="!isFailed" class="grid lg:grid-cols-12 h-screen relative">
-      <div class="fixed p-5 right-0">
+      <div class="fixed p-5 right-0 z-[12]">
         <button
           class="w-10 h-10 rounded-full bg-blue-500 lg:hidden"
           @click="toggleInfoBox"
