@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "run-p dev:*",
-    "dev:server": "vite",
+    "dev:server": "vite --host",
     "build": "vue-tsc && npx tailwindcss -i ./src/style/index.css -o ./src/style.css && vite build",
     "preview": "vite preview",
     "dev:tailwind": "npx tailwindcss -i ./src/style/index.css -o ./src/style.css --watch"

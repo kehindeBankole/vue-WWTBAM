@@ -23,12 +23,11 @@ function selectedCorrect(index: number) {
   isSelecting.value = true;
   trapezium.value[index].classList.add('winner');
   trapezium2.value[index].classList.add('winner');
-  console.log(isSelecting.value)
 }
 function removeClass(index: number) {
   trapezium.value[index].classList.remove('winner');
   trapezium2.value[index].classList.remove('winner');
-  isSelecting.value=false
+  isSelecting.value = false;
 }
 
 function selectedWrong(index: number) {
@@ -39,8 +38,11 @@ function selectedWrong(index: number) {
 </script>
 
 <template>
-  <div class="grid lg:grid-cols-2 gap-10">
-    <div class="relative" v-for="(items, index) in questions.options">
+  <div class="grid lg:grid-cols-2 lg:gap-10 gap-4">
+    <div
+      class="relative overflow-hidden"
+      v-for="(items, index) in questions.options"
+    >
       <button
         class="inset-0 absolute w-full z-[9]"
         :disabled="isSelecting"
@@ -70,7 +72,11 @@ function selectedWrong(index: number) {
         class="trapezoid text-white relative grid place-items-center"
         ref="trapezium"
       >
-        <p class="translate-y-10 z-[9] capitalize text-lg">{{ items.text }}</p>
+        <p
+          class="lg:translate-y-10 translate-y-7 z-[9] capitalize lg:text-lg text-sm"
+        >
+          {{ items.text }}
+        </p>
       </div>
       <div class="inverted-trapezoid" ref="trapezium2"></div>
     </div>
@@ -94,45 +100,91 @@ function selectedWrong(index: number) {
 
 @keyframes bg-winner {
   0% {
-    border-bottom: 50px solid orange;
+    border-bottom: 40px solid orange;
   }
 
   25% {
-    border-bottom: 50px solid black;
+    border-bottom: 40px solid black;
   }
 
   50% {
-    border-bottom: 50px solid orange;
+    border-bottom: 40px solid orange;
   }
 
   75% {
-    border-bottom: 50px solid black;
+    border-bottom: 40px solid black;
   }
 
   100% {
-    border-bottom: 50px solid green;
+    border-bottom: 40px solid green;
   }
 }
 
 @keyframes bg-loser {
   0% {
-    border-bottom: 50px solid orange;
+    border-bottom: 40px solid orange;
   }
 
   25% {
-    border-bottom: 50px solid black;
+    border-bottom: 40px solid black;
   }
 
   50% {
-    border-bottom: 50px solid orange;
+    border-bottom: 40px solid orange;
   }
 
   75% {
-    border-bottom: 50px solid black;
+    border-bottom: 40px solid black;
   }
 
   100% {
-    border-bottom: 50px solid red;
+    border-bottom: 40px solid red;
+  }
+}
+
+@media (min-width: 1024px) {
+  @keyframes bg-winner {
+    0% {
+      border-bottom: 50px solid orange;
+    }
+
+    25% {
+      border-bottom: 50px solid black;
+    }
+
+    50% {
+      border-bottom: 50px solid orange;
+    }
+
+    75% {
+      border-bottom: 50px solid black;
+    }
+
+    100% {
+      border-bottom: 50px solid green;
+    }
+  }
+
+  @keyframes bg-loser {
+    0% {
+      border-bottom: 50px solid orange;
+    }
+
+    25% {
+      border-bottom: 50px solid black;
+    }
+
+    50% {
+      border-bottom: 50px solid orange;
+    }
+
+    75% {
+      border-bottom: 50px solid black;
+    }
+
+    100% {
+      border-bottom: 50px solid red;
+    }
   }
 }
 </style>

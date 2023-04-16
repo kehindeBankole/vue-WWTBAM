@@ -118,15 +118,15 @@ function useLifeLine(type: '50/50' | 'AUD') {
           ⚠️
         </button>
       </div>
-      <div class="bg-red-500 col-span-10 grid grid-rows-[6fr_6fr]">
+      <div class="bg-red-500 col-span-10 grid lg:grid-rows-[6fr_6fr] grid-rows-[3fr_9fr]">
         <div class="bg-white grid place-items-center">
           <p v-if="count - 1 >= 0">{{ scores[count - 1] }}</p>
         </div>
         <div class="bg-blue-900">
-          <div class="mt-[-3rem]">
+          <div class="lg:mt-[-3rem] -mt-10">
             <div class="trapezoid text-white relative grid place-items-center">
               <p
-                class="translate-y-5 lg:translate-y-10 text-center z-[10] text-xl"
+                class="translate-y-7 lg:translate-y-10 text-center z-[10] lg:text-xl text-sm"
               >
                 {{ data[count].text }}
               </p>
@@ -186,6 +186,23 @@ button:disabled {
   cursor: not-allowed;
 }
 .trapezoid {
+  border-bottom: 40px solid black;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  height: 0;
+  width: 100%;
+}
+
+.inverted-trapezoid {
+  border-bottom: 40px solid black;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  height: 0;
+  width: 100%;
+  transform: rotate(180deg);
+}
+@media (min-width: 1024px) {
+  .trapezoid {
   border-bottom: 50px solid black;
   border-left: 25px solid transparent;
   border-right: 25px solid transparent;
@@ -201,7 +218,7 @@ button:disabled {
   width: 100%;
   transform: rotate(180deg);
 }
-
+}
 .modal {
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
