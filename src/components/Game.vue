@@ -86,25 +86,25 @@ function useLifeLine(type: '50/50' | 'AUD') {
 <template>
   <main>
     <div class="modal" v-if="openModal">
-      <div class="bg-white lg:w-[50rem] w-[80%] p-10 rounded-xl">
+      <div class="bg-white lg:w-[50rem] w-[90%] p-10 rounded-xl space-y-10">
         <button
           @click="openModal = false"
           class="bg-blue-500 w-20 text-sm text-white h-20 rounded-full"
         >
           OKAY
         </button>
-        <div class="flex gap-10 justify-center">
+        <div class="grid grid-cols-4 space-x-4">
           <div
             v-for="items in data[count].options"
             class="h-[20rem] flex flex-col items-center"
           >
             <div
-              class="relative bg-red-500 w-20 h-full transition-all origin-bottom duration-1000"
+              class="relative bg-red-500 w-full h-full transition-all origin-bottom duration-1000"
               :style="{
                 transform: `scaleY(${audienceChoice[`${items.text}`]}%)`,
               }"
             ></div>
-            <p>{{ audienceChoice && audienceChoice[`${items.text}`] }}</p>
+            <p>{{ audienceChoice && audienceChoice[`${items.text}`] }}%</p>
           </div>
         </div>
       </div>
