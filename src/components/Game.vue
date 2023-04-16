@@ -11,6 +11,12 @@ const data = ref(questions);
 const lifeLinesUsed = ref({}) as Record<string, any>;
 const audienceChoice = ref({}) as Record<string, any>;
 const openModal = ref(false);
+const windowWidth = window.innerWidth;
+const openInfoBox = ref(window.innerWidth > 1023);
+
+function toggleInfoBox() {
+  openInfoBox.value = !openInfoBox.value;
+}
 function selectWrongAnswer() {
   isFailed.value = true;
 }
@@ -78,9 +84,9 @@ function useLifeLine(type: '50/50' | 'AUD') {
 </script>
 
 <template>
-  <main class="hidden lg:block">
+  <main>
     <div class="modal" v-if="openModal">
-      <div class="bg-white w-[50rem] p-10 rounded-xl">
+      <div class="bg-white lg:w-[50rem] w-[80%] p-10 rounded-xl">
         <button
           @click="openModal = false"
           class="bg-blue-500 w-20 text-sm text-white h-20 rounded-full"
@@ -103,7 +109,15 @@ function useLifeLine(type: '50/50' | 'AUD') {
         </div>
       </div>
     </div>
-    <div v-if="!isFailed" class="grid grid-cols-12 h-screen">
+    <div v-if="!isFailed" class="grid lg:grid-cols-12 h-screen relative">
+      <div class="fixed p-5 right-0">
+        <button
+          class="w-10 h-10 rounded-full bg-blue-500 lg:hidden"
+          @click="toggleInfoBox"
+        >
+          ⚠️
+        </button>
+      </div>
       <div class="bg-red-500 col-span-10 grid grid-rows-[6fr_6fr]">
         <div class="bg-white grid place-items-center">
           <p v-if="count - 1 >= 0">{{ scores[count - 1] }}</p>
@@ -111,13 +125,15 @@ function useLifeLine(type: '50/50' | 'AUD') {
         <div class="bg-blue-900">
           <div class="mt-[-3rem]">
             <div class="trapezoid text-white relative grid place-items-center">
-              <p class="translate-y-10 z-[99] text-xl">
+              <p
+                class="translate-y-5 lg:translate-y-10 text-center z-[10] text-xl"
+              >
                 {{ data[count].text }}
               </p>
             </div>
             <div class="inverted-trapezoid"></div>
           </div>
-          <div class="mt-10">
+          <div class="mt-10 lg:pb-0 pb-10">
             <Options
               :questions="data[count]"
               :select-wrong-answer="selectWrongAnswer"
@@ -126,7 +142,11 @@ function useLifeLine(type: '50/50' | 'AUD') {
           </div>
         </div>
       </div>
-      <div class="bg-blue-500 col-span-2">
+      <div
+        class="bg-blue-500 col-span-2 fixed lg:relative lg:block lg:w-full h-full z-[11]"
+        :style="{ width: openInfoBox && windowWidth <= 1023 ? '50%' : '100%' }"
+        v-if="openInfoBox"
+      >
         <div class="grid grid-rows-[1fr_10fr]">
           <div class="bg-blue-800 grid grid-cols-3 text-white">
             <button
@@ -159,14 +179,11 @@ function useLifeLine(type: '50/50' | 'AUD') {
       />
     </div>
   </main>
-  <main class="grid place-items-center lg:hidden h-screen">
-    <p>PLEASE PAY ON A DESKTOP DEVICE 🙏🏿</p>
-  </main>
 </template>
 
 <style>
-button:disabled{
-  cursor:not-allowed
+button:disabled {
+  cursor: not-allowed;
 }
 .trapezoid {
   border-bottom: 50px solid black;

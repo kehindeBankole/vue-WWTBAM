@@ -39,10 +39,10 @@ function selectedWrong(index: number) {
 </script>
 
 <template>
-  <div class="grid grid-cols-2 gap-10">
+  <div class="grid lg:grid-cols-2 gap-10">
     <div class="relative" v-for="(items, index) in questions.options">
       <button
-        class="inset-0 absolute w-full z-[99]"
+        class="inset-0 absolute w-full z-[9]"
         :disabled="isSelecting"
         @click="
           () => {
@@ -70,7 +70,7 @@ function selectedWrong(index: number) {
         class="trapezoid text-white relative grid place-items-center"
         ref="trapezium"
       >
-        <p class="translate-y-10 z-50 capitalize text-lg">{{ items.text }}</p>
+        <p class="translate-y-10 z-[9] capitalize text-lg">{{ items.text }}</p>
       </div>
       <div class="inverted-trapezoid" ref="trapezium2"></div>
     </div>
