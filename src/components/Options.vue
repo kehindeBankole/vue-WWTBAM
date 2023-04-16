@@ -12,7 +12,7 @@ var props = defineProps<{
 
 const trapezium = ref();
 const trapezium2 = ref();
-
+const isSelecting = ref(false);
 function playSound(sound: string, next?: () => void) {
   var audio = new Audio(sound);
   audio.play();
@@ -20,15 +20,19 @@ function playSound(sound: string, next?: () => void) {
   return audio;
 }
 function selectedCorrect(index: number) {
+  isSelecting.value = true;
   trapezium.value[index].classList.add('winner');
   trapezium2.value[index].classList.add('winner');
+  console.log(isSelecting.value)
 }
 function removeClass(index: number) {
   trapezium.value[index].classList.remove('winner');
   trapezium2.value[index].classList.remove('winner');
+  isSelecting.value=false
 }
 
 function selectedWrong(index: number) {
+  isSelecting.value = true;
   trapezium.value[index].classList.add('loser');
   trapezium2.value[index].classList.add('loser');
 }
@@ -39,6 +43,7 @@ function selectedWrong(index: number) {
     <div class="relative" v-for="(items, index) in questions.options">
       <button
         class="inset-0 absolute w-full z-[99]"
+        :disabled="isSelecting"
         @click="
           () => {
             playSound(audioSound).addEventListener('ended', () => {
